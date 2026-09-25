@@ -1,0 +1,15 @@
+$ whoami #¿quien soy acá? ec2-user
+
+$ hostname # ¿cómo se llama este servidor?
+
+$ pwd      # ¿en qué carpeta estoy?
+
+$ uname -a   # ¿qué sistema es? (linux)
+
+$ uptime     # ¿hace cuanto esta encendido?
+
+$ df -h      # ¿cuánto disco tengo?
+
+$ free -h   # ¿cuánta memoria RAM?
+
+$ nproc      # ¿cuántos procesadores?
