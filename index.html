@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20221e">
+  <meta name="description" content="Equipo fiable para tus próximas aventuras. Explora la selección de supervivencia, acampada y outdoor de Terreno.">
+  <title>Terreno — Equipo para lo que venga</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #20221e;
+      --paper: #f4f2eb;
+      --muted: #77796f;
+      --olive: #68734e;
+      --olive-dark: #414a32;
+      --line: #d9d8cf;
+      --rust: #c4613b;
+      --white: #fffefa;
+      --display: "Barlow Condensed", Impact, sans-serif;
+      --body: "DM Sans", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    .announcement { display: flex; justify-content: center; gap: 10px; padding: 9px 16px; color: #f8f5eb; background: var(--olive-dark); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .announcement span { color: #d6bd81; }
+    .topbar { height: 76px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 6.2%; border-bottom: 1px solid var(--line); background: var(--paper); }
+    .nav-links { display: flex; gap: 27px; align-items: center; font-size: 12px; font-weight: 600; }
+    .nav-links a:hover, .footer-links a:hover { color: var(--rust); }
+    .wordmark { font: 800 32px/.85 var(--display); letter-spacing: .02em; text-align: center; }
+    .wordmark span { color: var(--rust); }
+    .brand-sub { display: block; margin-top: 5px; font: 600 8px/1 var(--body); letter-spacing: .23em; text-align: center; }
+    .tools { display: flex; justify-content: flex-end; gap: 20px; align-items: center; }
+    .icon-button { position: relative; display: inline-grid; place-items: center; width: 38px; height: 38px; border: 0; background: transparent; color: var(--ink); }
+    .icon-button:hover { color: var(--rust); }
+    .icon-button svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .cart-count { position: absolute; top: 0; right: 0; display: grid; place-items: center; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 20px; background: var(--rust); color: white; font-size: 9px; font-weight: 700; }
+    .mobile-menu { display: none; }
+    .hero { position: relative; min-height: 565px; display: flex; align-items: center; overflow: hidden; color: white; background: #34382e; }
+    .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 54%; filter: saturate(.72); }
+    .hero::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(22,25,21,.83) 0%, rgba(22,25,21,.55) 43%, rgba(22,25,21,.07) 100%), linear-gradient(0deg, rgba(22,25,21,.17), transparent 45%); }
+    .hero-content { z-index: 1; width: min(590px, 90%); margin-left: 10.2%; padding: 75px 0 84px; animation: reveal .8s ease both; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: #d7c48e; font-size: 10px; font-weight: 700; letter-spacing: .21em; text-transform: uppercase; }
+    .eyebrow::before { width: 25px; height: 1px; content: ""; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    .hero h1 { max-width: 560px; margin-bottom: 19px; font: 700 clamp(56px, 7vw, 88px)/.87 var(--display); letter-spacing: .01em; text-transform: uppercase; }
+    .hero h1 em { color: #d0bd83; font-style: normal; }
+    .hero-copy { max-width: 390px; margin-bottom: 30px; color: rgba(255,255,255,.8); font-size: 14px; line-height: 1.7; }
+    .button { display: inline-flex; min-height: 48px; justify-content: center; align-items: center; gap: 13px; padding: 0 22px; border: 1px solid transparent; background: var(--rust); color: white; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transition: background .2s, transform .2s; }
+    .button:hover { transform: translateY(-2px); background: #a84e2e; }
+    .button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .hero-index { position: absolute; z-index: 1; right: 6.2%; bottom: 32px; color: rgba(255,255,255,.8); font: 600 13px var(--display); letter-spacing: .15em; }
+    .hero-index strong { color: #d0bd83; }
+    .trust-strip { display: grid; grid-template-columns: repeat(3,1fr); padding: 19px 9%; border-bottom: 1px solid var(--line); background: #eae8df; }
+    .trust-item { display: flex; justify-content: center; align-items: center; gap: 10px; color: #4d5046; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .trust-item svg { width: 17px; height: 17px; fill: none; stroke: var(--olive); stroke-width: 1.6; }
+    .catalog { max-width: 1440px; margin: 0 auto; padding: 76px 7% 88px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 29px; }
+    .section-head .eyebrow { margin-bottom: 10px; color: var(--olive); }
+    .section-head h2 { margin-bottom: 0; font: 700 47px/.95 var(--display); text-transform: uppercase; }
+    .section-sub { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+    .search { display: flex; align-items: center; gap: 9px; width: min(230px, 42%); padding: 10px 0; border-bottom: 1px solid #aaa99f; }
+    .search svg { width: 17px; height: 17px; flex: 0 0 auto; fill: none; stroke: #67695f; stroke-width: 1.8; }
+    .search input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }
+    .search input::placeholder { color: #898a80; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .filter { padding: 9px 15px; border: 1px solid #c8c7bd; background: transparent; color: #55574e; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; transition: all .18s; }
+    .filter:hover, .filter.active { border-color: var(--ink); background: var(--ink); color: white; }
+    .products { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 28px 17px; }
+    .product { min-width: 0; animation: reveal .45s ease both; }
+    .product-image-wrap { position: relative; overflow: hidden; aspect-ratio: 4/4.6; background: #e5e3da; }
+    .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .product:hover .product-image { transform: scale(1.045); }
+    .product-tag { position: absolute; top: 12px; left: 12px; padding: 6px 8px; background: var(--paper); color: var(--ink); font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .quick-add { position: absolute; right: 10px; bottom: 10px; left: 10px; display: flex; min-height: 39px; justify-content: center; align-items: center; gap: 8px; border: 0; background: rgba(32,34,30,.94); color: white; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: 0; transform: translateY(7px); transition: all .2s; }
+    .product:hover .quick-add, .quick-add:focus-visible { opacity: 1; transform: translateY(0); }
+    .quick-add svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .product-info { display: flex; justify-content: space-between; gap: 8px; padding-top: 13px; }
+    .product-category { margin-bottom: 5px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+    .product h3 { margin-bottom: 0; font-size: 13px; font-weight: 600; line-height: 1.35; }
+    .price { flex: 0 0 auto; padding-top: 2px; font-size: 12px; font-weight: 700; }
+    .empty-state { grid-column: 1/-1; padding: 50px 10px; color: var(--muted); text-align: center; font-size: 14px; }
+    .field-note { display: grid; grid-template-columns: 1fr 1fr; min-height: 355px; background: #414a32; color: white; }
+    .field-note-image { min-height: 300px; width: 100%; height: 100%; object-fit: cover; }
+    .field-note-copy { align-self: center; max-width: 520px; padding: 58px clamp(28px, 7vw, 100px); }
+    .field-note-copy .eyebrow { color: #d2c18f; }
+    .field-note-copy h2 { margin-bottom: 14px; font: 700 49px/.94 var(--display); text-transform: uppercase; }
+    .field-note-copy p { margin-bottom: 23px; color: rgba(255,255,255,.76); font-size: 12px; line-height: 1.8; }
+    .text-link { display: inline-flex; align-items: center; gap: 10px; padding-bottom: 5px; border-bottom: 1px solid #d2c18f; color: #f4e7bd; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .text-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    footer { padding: 44px 7% 25px; background: #20221e; color: white; }
+    .footer-main { display: flex; justify-content: space-between; gap: 40px; padding-bottom: 35px; }
+    .footer-brand .wordmark { text-align: left; }
+    .footer-brand .brand-sub { text-align: left; }
+    .footer-copy { max-width: 260px; margin: 14px 0 0; color: #b9baaf; font-size: 11px; line-height: 1.7; }
+    .footer-links { display: flex; gap: clamp(25px, 6vw, 75px); }
+    .footer-links h3 { margin: 0 0 13px; color: #c9c9bd; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+    .footer-links a { display: block; margin: 9px 0; color: #e9e8df; font-size: 11px; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; padding-top: 18px; border-top: 1px solid #41433b; color: #999b90; font-size: 9px; }
+    .toast { position: fixed; z-index: 5; right: 20px; bottom: 20px; padding: 13px 18px; background: var(--ink); color: white; font-size: 12px; box-shadow: 0 8px 28px #0003; opacity: 0; transform: translateY(10px); transition: .2s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @keyframes reveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 850px) {
+      .topbar { padding: 0 4%; }
+      .nav-links { gap: 14px; font-size: 10px; }
+      .hero { min-height: 510px; }
+      .hero-content { margin-left: 7%; }
+      .catalog { padding: 64px 5% 70px; }
+      .products { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 26px 14px; }
+      .quick-add { opacity: 1; transform: none; }
+      .field-note-copy { padding: 45px 30px; }
+    }
+    @media (max-width: 600px) {
+      .announcement { font-size: 9px; }
+      .topbar { height: 65px; grid-template-columns: 1fr auto 1fr; }
+      .nav-links { position: absolute; z-index: 3; top: 105px; right: 0; left: 0; display: none; padding: 18px 5%; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .nav-links.open { display: flex; }
+      .mobile-menu { display: inline-grid; justify-self: start; }
+      .wordmark { font-size: 28px; }
+      .tools { gap: 4px; }
+      .tools .icon-button:first-child { display: none; }
+      .hero { min-height: 540px; align-items: flex-end; }
+      .hero-image { object-position: 61% center; }
+      .hero::after { background: linear-gradient(0deg, rgba(22,25,21,.88), rgba(22,25,21,.3) 75%, rgba(22,25,21,.1)); }
+      .hero-content { width: 88%; margin: 0 auto; padding: 70px 0 80px; }
+      .hero h1 { font-size: clamp(58px, 16vw, 76px); }
+      .hero-copy { max-width: 330px; font-size: 13px; }
+      .hero-index { right: 6%; bottom: 19px; }
+      .trust-strip { grid-template-columns: 1fr; gap: 14px; padding: 18px 10px; }
+      .trust-item { font-size: 9px; }
+      .catalog { padding: 52px 5% 58px; }
+      .section-head { align-items: start; flex-direction: column; gap: 16px; }
+      .section-head h2 { font-size: 42px; }
+      .search { width: 100%; }
+      .filters { gap: 6px; margin-bottom: 21px; }
+      .filter { padding: 8px 10px; font-size: 9px; }
+      .products { gap: 23px 10px; }
+      .product-image-wrap { aspect-ratio: 4/4.8; }
+      .product-tag { top: 8px; left: 8px; padding: 5px 6px; font-size: 8px; }
+      .quick-add { right: 6px; bottom: 6px; left: 6px; min-height: 34px; font-size: 9px; }
+      .product-info { flex-direction: column; gap: 5px; padding-top: 10px; }
+      .product h3 { font-size: 12px; }
+      .price { font-size: 12px; }
+      .field-note { grid-template-columns: 1fr; }
+      .field-note-image { height: 230px; min-height: 0; }
+      .field-note-copy { padding: 38px 7% 44px; }
+      .field-note-copy h2 { font-size: 44px; }
+      .footer-main { flex-direction: column; }
+      .footer-links { justify-content: space-between; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="announcement">Envío gratis en pedidos superiores a 90 € <span>·</span> Equipo listo para salir</div>
+  <header class="topbar">
+    <button class="icon-button mobile-menu" id="menuButton" aria-label="Abrir menú" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav-links" id="mainNav" aria-label="Navegación principal">
+      <a href="#catalogo">Tienda</a><a href="#catalogo" data-nav-filter="mochilas">Mochilas</a><a href="#catalogo" data-nav-filter="herramientas">Herramientas</a><a href="#historia">Nuestra forma</a>
+    </nav>
+    <a class="wordmark" href="#inicio" aria-label="Terreno, inicio">TERRENO<span>.</span><small class="brand-sub">EQUIPO PARA LO QUE VENGA</small></a>
+    <div class="tools">
+      <button class="icon-button" id="searchButton" aria-label="Buscar productos"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.3 4.3"/></svg></button>
+      <button class="icon-button" id="cartButton" aria-label="Ver carrito"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.3a2 2 0 0 0 1.9-1.4L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio" aria-label="Equipo para tus próximas aventuras">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=2000&q=85" alt="Campamento de montaña al aire libre" fetchpriority="high">
+      <div class="hero-content">
+        <p class="eyebrow">Preparado para lo imprevisible</p>
+        <h1>Fuera de ruta.<br><em>Dentro de tu elemento.</em></h1>
+        <p class="hero-copy">Equipo resistente, probado en terreno y elegido para acompañarte cuando el camino se acaba.</p>
+        <a class="button" href="#catalogo">Explorar equipo <svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="hero-index"><strong>01</strong> / PREPARACIÓN</div>
+    </section>
+
+    <section class="trust-strip" aria-label="Ventajas de la tienda">
+      <div class="trust-item"><svg viewBox="0 0 24 24"><path d="m12 3 8 3v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg> Selección probada en campo</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M3 7h11v11H3zM14 11h4l3 3v4h-7z"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="18" cy="19" r="1.5"/></svg> Envío gratis desde 90 €</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5"/><path d="M4 4v4.5h4.5M12 7v5l3 2"/></svg> 30 días para decidir</div>
+    </section>
+
+    <section class="catalog" id="catalogo">
+      <div class="section-head">
+        <div><p class="eyebrow">Hecho para durar</p><h2>Equipo esencial</h2><p class="section-sub">Lo necesario. Nada que sobre.</p></div>
+        <label class="search" aria-label="Buscar en el catálogo"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.3 4.3"/></svg><input id="searchInput" type="search" placeholder="Buscar equipo..." autocomplete="off"></label>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrar por categoría">
+        <button class="filter active" data-filter="todos" aria-pressed="true">Todo el equipo</button>
+        <button class="filter" data-filter="mochilas" aria-pressed="false">Mochilas</button>
+        <button class="filter" data-filter="herramientas" aria-pressed="false">Herramientas</button>
+        <button class="filter" data-filter="campamento" aria-pressed="false">Campamento</button>
+        <button class="filter" data-filter="vestuario" aria-pressed="false">Vestuario</button>
+      </div>
+      <div class="products" id="products" aria-live="polite"></div>
+    </section>
+
+    <section class="field-note" id="historia">
+      <img class="field-note-image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=80" alt="Paisaje de montaña abierto y salvaje" loading="lazy">
+      <div class="field-note-copy">
+        <p class="eyebrow">Sin atajos. Sin ruido.</p>
+        <h2>El terreno<br>pone las reglas.</h2>
+        <p>Elegimos cada pieza por su utilidad, su resistencia y su capacidad de ganarse un sitio en tu mochila. Menos promesas. Más kilómetros.</p>
+        <a class="text-link" href="#catalogo">Conoce el equipo <svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main">
+      <div class="footer-brand"><a class="wordmark" href="#inicio">TERRENO<span>.</span><small class="brand-sub">EQUIPO PARA LO QUE VENGA</small></a><p class="footer-copy">Equipo fiable para salir, avanzar y volver con historias.</p></div>
+      <div class="footer-links">
+        <div><h3>Explora</h3><a href="#catalogo">Todo el equipo</a><a href="#catalogo" data-nav-filter="mochilas">Mochilas</a><a href="#catalogo" data-nav-filter="campamento">Campamento</a></div>
+        <div><h3>Terreno</h3><a href="#historia">Nuestra forma</a><a href="mailto:hola@terreno.example">Contacto</a><a href="mailto:hola@terreno.example">Ayuda</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 TERRENO. TODOS LOS DERECHOS RESERVADOS.</span><span>DISEÑADO PARA SALIR.</span></div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const products = [
+      { name: "Mochila de expedición 45L", category: "mochilas", categoryLabel: "Mochilas", price: 129, image: "photo-1622260614153-03223fb72052", tag: "Más vendido", alt: "Mochila de trekking preparada para expedición" },
+      { name: "Navaja multiusos Trail", category: "herramientas", categoryLabel: "Herramientas", price: 38, image: "photo-1599508704512-2f19efd1e35f", tag: "Compacto", alt: "Herramienta multiusos de acero" },
+      { name: "Tienda ligera para 2", category: "campamento", categoryLabel: "Campamento", price: 184, image: "photo-1478131143081-80f7f84ca84d", tag: "Ultraligera", alt: "Tienda de campaña en un paraje de montaña" },
+      { name: "Chaqueta shell resistente", category: "vestuario", categoryLabel: "Vestuario", price: 146, image: "photo-1544923246-77307dd654cb", tag: "Todo tiempo", alt: "Chaqueta técnica para exteriores" },
+      { name: "Mochila táctica compacta 25L", category: "mochilas", categoryLabel: "Mochilas", price: 89, image: "photo-1553062407-98eeb64c6a62", tag: "Diario", alt: "Mochila compacta para rutas" },
+      { name: "Linterna frontal recargable", category: "herramientas", categoryLabel: "Herramientas", price: 32, image: "photo-1500534623283-312aade485b7", tag: "350 lúmenes", alt: "Equipo de iluminación para exterior" },
+      { name: "Saco de dormir 3 estaciones", category: "campamento", categoryLabel: "Campamento", price: 112, image: "photo-1478131143081-80f7f84ca84d", tag: "-5 °C confort", alt: "Equipo de descanso para acampada" },
+      { name: "Guantes de campo reforzados", category: "vestuario", categoryLabel: "Vestuario", price: 27, image: "photo-1511499767150-a48a237f0083", tag: "Refuerzo palma", alt: "Accesorios técnicos resistentes" }
+    ];
+    const productsNode = document.querySelector("#products");
+    const searchInput = document.querySelector("#searchInput");
+    const cartCount = document.querySelector("#cartCount");
+    const toast = document.querySelector("#toast");
+    let activeFilter = "todos";
+    let cartItems = 0;
+    let toastTimer;
+
+    function renderProducts() {
+      const query = searchInput.value.trim().toLocaleLowerCase("es");
+      const visible = products.filter((product) => {
+        const matchesCategory = activeFilter === "todos" || product.category === activeFilter;
+        const matchesSearch = `${product.name} ${product.categoryLabel}`.toLocaleLowerCase("es").includes(query);
+        return matchesCategory && matchesSearch;
+      });
+      productsNode.innerHTML = visible.length ? visible.map((product) => `
+        <article class="product">
+          <div class="product-image-wrap">
+            <img class="product-image" src="https://images.unsplash.com/${product.image}?auto=format&fit=crop&w=700&q=80" alt="${product.alt}" loading="lazy">
+            <span class="product-tag">${product.tag}</span>
+            <button class="quick-add" data-add="${product.name}" aria-label="Añadir ${product.name} al carrito">
+              <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Añadir al carrito
+            </button>
+          </div>
+          <div class="product-info"><div><p class="product-category">${product.categoryLabel}</p><h3>${product.name}</h3></div><span class="price">${product.price} €</span></div>
+        </article>`).join("") : `<p class="empty-state">No encontramos equipo con esa búsqueda.</p>`;
+    }
+
+    function notify(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2300);
+    }
+
+    document.querySelectorAll(".filter").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        document.querySelectorAll(".filter").forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle("active", selected);
+          item.setAttribute("aria-pressed", String(selected));
+        });
+        renderProducts();
+      });
+    });
+    searchInput.addEventListener("input", renderProducts);
+    productsNode.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-add]");
+      if (!button) return;
+      cartItems += 1;
+      cartCount.textContent = cartItems;
+      notify(`${button.dataset.add} añadido al carrito`);
+    });
+    document.querySelector("#searchButton").addEventListener("click", () => {
+      document.querySelector("#catalogo").scrollIntoView({ behavior: "smooth" });
+      searchInput.focus({ preventScroll: true });
+    });
+    document.querySelector("#cartButton").addEventListener("click", () => {
+      notify(cartItems ? `Tienes ${cartItems} ${cartItems === 1 ? "artículo" : "artículos"} en el carrito` : "Tu carrito está vacío");
+    });
+    document.querySelectorAll("[data-nav-filter]").forEach((link) => {
+      link.addEventListener("click", () => {
+        const filterButton = document.querySelector(`.filter[data-filter="${link.dataset.navFilter}"]`);
+        if (filterButton) filterButton.click();
+        document.querySelector("#mainNav").classList.remove("open");
+      });
+    });
+    document.querySelector("#menuButton").addEventListener("click", (event) => {
+      const nav = document.querySelector("#mainNav");
+      const isOpen = nav.classList.toggle("open");
+      event.currentTarget.setAttribute("aria-expanded", String(isOpen));
+    });
+    renderProducts();
+  </script>
+</body>
+</html>
