@@ -13,3 +13,9 @@ $ df -h      # ¿cuánto disco tengo?
 $ free -h   # ¿cuánta memoria RAM?
 
 $ nproc      # ¿cuántos procesadores?
+
+sudo systemctl enable --now nginx
+
+cd /usr/share/nginx/html/
+
+sudo cp Estucyber/index.html .
