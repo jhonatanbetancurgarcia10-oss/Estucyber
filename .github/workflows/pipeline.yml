@@ -98,6 +98,7 @@ jobs:
         run: pip install boto3
 
       - name: Probar el back (back/test_app.py)
+        working-directory: "tienda-laura-cicd"
         run: python -m unittest discover -s back -v
 
       - name: Empaquetar el back (back.zip)
