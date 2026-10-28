@@ -98,7 +98,6 @@ jobs:
         run: pip install boto3
 
       - name: Probar el back (back/test_app.py)
-      working-directory: "tienda-laura-cicd"
         run: python -m unittest discover -s back -v
 
       - name: Empaquetar el back (back.zip)
@@ -112,7 +111,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Subir el back a Lambda
-      working-directory: "tienda-laura-cicd"
+        working-directory: "tienda-laura-cicd"
         run: |
           aws lambda update-function-code --function-name "${{ needs.infra.outputs.funcion }}" --zip-file fileb://back.zip --query LastModified --output text
           aws lambda wait function-updated --function-name "${{ needs.infra.outputs.funcion }}"
@@ -126,7 +125,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Probar el front (¿el JavaScript está bien escrito? ¿la página carga sus archivos?)
-      working-directory: "tienda-laura-cicd"
+        working-directory: "tienda-laura-cicd"
         run: |
           node --check front/app.js
           grep -q 'config.js' front/index.html
@@ -134,7 +133,7 @@ jobs:
           echo "front OK"
 
       - name: Empaquetar el front (version.js con el commit que se publica)
-      working-directory: "tienda-laura-cicd"
+        working-directory: "tienda-laura-cicd"
         run: |
           echo "window.VERSION = { commit: \"$(echo $GITHUB_SHA | cut -c1-7)\", autor: \"$GITHUB_ACTOR\", fecha: \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\" };" > front/version.js
           cat front/version.js
@@ -146,7 +145,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Subir el front a S3
-      working-directory: "tienda-laura-cicd"
+        working-directory: "tienda-laura-cicd"
         run: aws s3 sync front "s3://${{ needs.infra.outputs.bucket }}" --delete --exclude config.js
 
   finalizar:
@@ -183,13 +182,13 @@ jobs:
           python-version: "3.12"
 
       - name: Probar el back
-      working-directory: "tienda-laura-cicd"
+        working-directory: "tienda-laura-cicd"
         run: |
           pip install boto3
           python -m unittest discover -s back -v
 
       - name: Probar el front
-      working-directory: "tienda-laura-cicd"
+        working-directory: "tienda-laura-cicd"
         run: |
           node --check front/app.js
           grep -q 'config.js' front/index.html
